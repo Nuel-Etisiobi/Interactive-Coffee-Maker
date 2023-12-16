@@ -23,12 +23,15 @@ def process_coin():
 
 # check transaction to know if the money inserted is enough to buy the coffee otherwise refund
 def check_transaction(price):
-    if price > MENU[user_choice]["cost"]:
-        change = round(price - MENU[user_choice]["cost"], 2)
-        print(f"Here is ${change} dollars in change")
-        return True
-    else:
-        print("Sorry that is not enough money. Money refunded. ")
+    try:
+        if price > MENU[user_choice]["cost"]:
+            change = round(price - MENU[user_choice]["cost"], 2)
+            print(f"Here is ${change} dollars in change")
+            return True
+        else:
+            print("Sorry that is not enough money. Money refunded. ")
+    except TypeError:
+        print("Please insert an integer")
 
 
 # calculate the money inserted

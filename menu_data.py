@@ -1,26 +1,26 @@
 MENU = {
     "espresso": {
         "ingredients": {
-            "water": 50,
+            "water": 300,
             "coffee": 18,
         },
-        "cost": 1.5,
+        "cost": 200,
     },
     "latte": {
         "ingredients": {
-            "water": 200,
-            "milk": 150,
+            "water": 450,
+            "milk": 250,
             "coffee": 24,
         },
-        "cost": 2.5,
+        "cost": 450,
     },
     "cappuccino": {
         "ingredients": {
-            "water": 250,
-            "milk": 100,
+            "water": 500,
+            "milk": 200,
             "coffee": 24,
         },
-        "cost": 3.0,
+        "cost": 700,
     }
 }
 
