@@ -13,9 +13,10 @@ def is_sufficient(ingredients_order):
 
 
 # process the money. For use case in Nigeria, the coin is purchased at the coffee shop using the naira currency
-def process_coin():
+def process_money():
+    print("Please insert coin")
     try:
-        total = int(input("how many bronze? ")) * 25
+        total = int(input("how much money do you have? "))
         return total
     except ValueError:
         print("Please input an integer")
@@ -26,7 +27,7 @@ def check_transaction(price):
     try:
         if price > MENU[user_choice]["cost"]:
             change = round(price - MENU[user_choice]["cost"], 2)
-            print(f"Here is ${change} dollars in change")
+            print(f"Here is ₦{change} naira in change")
             return True
         else:
             print("Sorry that is not enough money. Money refunded. ")
@@ -40,7 +41,7 @@ def calculate_money(money):
     return money
 
 
-# make coffee
+# make coffee if the money is enough
 def make_coffee(drink_name, ingredients_order):
     for item in ingredients_order:
         resources[item] = resources[item] - ingredients_order[item]
@@ -52,23 +53,25 @@ machine_on = True
 
 # Ask the user what they would like
 while machine_on:
+    print("This is interactive coffe machine. Enter 'report' to get the available resources")
     user_choice = input(" What would you like? (espresso/latte/cappuccino) ")
 
-    # Turn off machine with secret word off
+    # Only workers can turn off the machine with the secret word off
     if user_choice == "off":
         machine_on = False
 
-    # print report
+    # print report of the available resources
     elif user_choice == "report":
         print(f"Water: {resources['water']}")
         print(f"Milk: {resources['milk']}")
         print(f"coffee: {resources['coffee']}")
         print(f"Money: {total_money}")
     else:
+        # this checks the user choice in the menu if resources is sufficient it makes the coffee500
         drink = MENU[user_choice]
         if is_sufficient(drink["ingredients"]):
             total_money += calculate_money(total_money)
-            payment = process_coin()
+            payment = process_money()
             print(f"the amount you paid: {payment}")
             if check_transaction(payment):
                 print(make_coffee(user_choice, drink["ingredients"]))
